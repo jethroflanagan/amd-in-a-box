@@ -126,3 +126,9 @@ node box -p -c
 ```
 
 ## Deployment
+At the moment, it only copies over the `js` folder in the source to the `deploy` folder. You need to copy over all remaining assets. The index file must be updated so that the previous `<script>` tag is replaced similar to the following:
+```html
+<script src="js/vendor/require.js" 
+	data-main="js/inabox/config.js">
+</script>
+```

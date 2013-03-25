@@ -1,7 +1,7 @@
 # AMD in a Box v0.1
 
 ## Why does this exist?
-AMD is great for serious JS development but RequireJS has a big issue that makes it especially difficult to debug large scale JS apps.
+AMD is great for JS development but RequireJS has an issue that makes it especially difficult to debug large scale JS apps.
 
 File dependancies/includes are written in string form which makes it impossible to error check using front-end JavaScript.
 

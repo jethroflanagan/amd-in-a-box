@@ -8,7 +8,7 @@ While this system is still being built, the packager and compiler both work corr
 It uses NodeJS for packaging and compilation.
 
 ## Vanilla RequireJS:
-```js
+```javascript
 define(
 [
 	'model/main'
@@ -21,7 +21,7 @@ function(Main)
 ```
 
 ## AMD in a Box:
-```js
+```javascript
 define(
 [
 	sys.pkg('model.Main') // resolves to model/main
@@ -73,7 +73,7 @@ If no flags are called, the packager and compiler will both run. Otherwise, only
 Settings are in `packager_config.json`.
 
 Example file:
-```js
+```javascript
 {
 	"project": "inabox", // main project folder
 	"source_path": "../../src/js",

@@ -8,7 +8,7 @@ While this system is still being built, the packager and compiler both work corr
 It uses NodeJS for packaging and compilation.
 
 ## Vanilla RequireJS:
-```javascript
+```js
 define(
 [
 	'model/main'
@@ -21,7 +21,7 @@ function(Main)
 ```
 
 ## AMD in a Box:
-```javascript
+```js
 define(
 [
 	sys.pkg('model.Main') // resolves to model/main

@@ -272,7 +272,7 @@ Only a few things. The compiler, packager and development environment all work s
 
 The compiler only copies over the `js` folder and not the rest of the source code just yet.
 
-A few bugs exist (e.g. changing the output filename for the packager when the packager is running will cause a crash). 
+There are a few bugs e.g. if the output file doesn't already exist it crashes the packager. 
 
 The compiler assumes any code it compiles is perfect so it could wipe out files. Luckily, it first copies everything over to the deploy folder so it won't overwrite your existing source.
 

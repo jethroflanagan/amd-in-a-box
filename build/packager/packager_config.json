@@ -1,0 +1,25 @@
+{
+	"project": "inabox",
+	"source_path": "../../src/js",
+	"deploy_path": "../../deploy/js",
+	"reduce_project": true,
+	"output": "../../src/js/sys/package_list.js",
+	"output_start": "sys.depLoaded(",
+	"output_end": ");",
+	"pretty_print": true,
+	"watch_interval": 1000,
+	"ignore_empty_dirs": true,
+	"lib_folder": "vendor",
+	"confirm_overwrite": true,
+	"ignore_dot_folders": true,
+	"ignore_folders": ["sys"],
+	"allowed_extensions": ["js", "html"],
+	"drop_folders": ["vendor"],
+	"map":
+		[
+			{
+				"from": "vendor/backbone.min.v2",
+				"to": "vendor/backbone"
+			}
+		]
+}

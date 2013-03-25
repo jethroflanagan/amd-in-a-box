@@ -1,0 +1,13 @@
+{
+	"project": "inabox",
+	"source_path": "../../src",
+	"deploy_path": "../../deploy",
+	"script_path": "js",
+	"ignore_empty_dirs": true,
+	"confirm_overwrite": true,
+	"ignore_dot_folders": true,
+	"ignore_dot_files": true,
+	"ignore_folders": [".git", ".svn"],
+	"allowed_extensions": ["*"],
+	"ignore_files": ["thumbs.db", ".DS_Store"]
+}  

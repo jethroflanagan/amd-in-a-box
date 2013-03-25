@@ -1,6 +1,6 @@
 sys.depLoaded({
 	"packages": {
-		".hollard": {
+		".inabox": {
 			"App": "",
 			"Config": "",
 			"Main": "",

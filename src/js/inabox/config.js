@@ -1,6 +1,6 @@
 require.config(
 	{
-		deps: ['hollard/app'],
+		deps: ['inabox/app'],
 		baseUrl: 'js/',
 
 		//TODO Remove this for compile

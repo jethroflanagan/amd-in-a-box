@@ -33,6 +33,8 @@ function(Main)
 
 If there is an error in the string in the `sys.pkg` call, a stack-trace will occur in the console immediately so you can see which file (and which line) has the issue. An error in plain RequireJS will sometimes indicate an error in a completely different file and a JS load error will only occur much later on.
 
+There are example `src` and `deploy` folders to see how it works.
+
 ## Development environment
 Dependancies are called in via sys.pkg (and sys.lib for 3rd party code if you want). These calls will check that the pacakge (or dependancy) actually exists. Naturally, for the push to live you don't need these checks and so all those calls will have their usual response baked into your code.
 e.g. `sys.pkg('model.Main')` will be replaced for actual deployment with `model/main`.

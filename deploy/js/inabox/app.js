@@ -1,6 +1,6 @@
 define(
 [
-	'hollard/main'
+	'inabox/main'
 ],
 
 function(Main) 

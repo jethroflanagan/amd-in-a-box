@@ -1,6 +1,6 @@
 define(
 [
-	'hollard/view/test'
+	'inabox/view/test'
 ],
 function(Test)
 {

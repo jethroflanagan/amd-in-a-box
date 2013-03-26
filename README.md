@@ -1,7 +1,7 @@
 # AMD in a Box v0.1
 
 ## Note
-This documentation is still a work in progress and needs a lot of clarity
+This documentation is still a work in progress and needs a lot of clarity. Things marked as "TODO..." in this README may be working already, they just aren't documented yet.
 
 ## Why does this exist?
 AMD is great for JS development but RequireJS has an issue that makes it especially difficult to debug large scale JS apps.
@@ -116,7 +116,7 @@ Use the `build/packager/packager_config.json` file to control the packager. It o
 	"ignore_folders": ["sys"],
 	"allowed_extensions": ["js", "html"],
 	"drop_folders": ["vendor"],
-	"map":
+	"map": 
 		[
 			{
 				"from": "vendor/backbone.min.v2",

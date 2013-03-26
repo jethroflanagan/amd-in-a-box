@@ -1,5 +1,8 @@
 # AMD in a Box v0.1
 
+## Note
+This documentation is still a work in progress and needs a lot of clarity
+
 ## Why does this exist?
 AMD is great for JS development but RequireJS has an issue that makes it especially difficult to debug large scale JS apps.
 
@@ -21,34 +24,31 @@ If have a location for `path/to/file` that doesn't exist, the errors it shows of
 The "script load error" only shows up a fair amount of time after that. You still need to do a global project search to work out where the error exists.
 
 ## The solution
-Run a check to ensure the file path is correct every time a dependancy is included. While we're at it, a nicer Java/AS3 style package notation wouldn't go amiss.
+Run a check to ensure the file path is correct every time a dependancy is included. 
 
 **So this is what we get:**
 
 ```javascript
-define([sys.pkg('path.to.FileName']), // resolves to 'path/to/file_name'
+define([sys.pkg('path.to.FileName']), // resolves to 'path/to/file_name' - see Package naming convention below
 function(File) {
 	...
 });
 ```
-
 `sys.pkg` will make sure the file exists and throw an error immediately if it doesn't - an error with a full stack trace so you can easily see which file caused the issue.
 
-Packages are converted to camel case from underscore style file/folder naming conventions (e.g. `foo_bar` to `fooBar`).
+### Package naming convention
+*Roadmap:* Disabling the "package name" naming (`path.to.FileName`) via the config and working with other file naming conventions (e.g. hyphens).
+
+Packages are converted to camel case names from underscore style file naming conventions. So `here/is/my/class_name` becomes `here.is.my.ClassName`. This is taken from Java and ActionScript 3. Since this is not be a preferred naming style in the JS community, this will soon be disabled by default.
 
 ## Example
 
 **Faulty code:**
 
 ```javascript
-define(
-[
-	sys.pkg('view.Test')
-],
-function(Test)
-{
-	function init()
-	{
+define([sys.pkg('view.Test')],
+function(Test) {
+	function init()	{
 	}
 });
 ```

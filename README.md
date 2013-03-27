@@ -10,7 +10,7 @@ AMD is great for JS development. The various AMD solutions make it especially di
 
 File dependancies/includes are written in string form which makes it impossible to error check using front-end JavaScript.
 
-We need to make debugging better and easier.
+We need to make debugging more efficient and much easier.
 
 **Vanilla RequireJS:**
 

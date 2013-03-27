@@ -41,7 +41,7 @@ function(File) {
 ### Package naming convention
 *Roadmap:* Disabling the "package name" naming (`path.to.FileName`) via the config and working with other file naming conventions (e.g. hyphens).
 
-Packages are converted to camel case names from underscore style file naming conventions. So `here/is/my/class_name` becomes `here.is.my.ClassName`. This is taken from Java and ActionScript 3. Since this is not be a preferred naming style in the JS community, this will soon be disabled by default.
+Packages are converted to camel case names from underscore style file naming conventions. So `here/is/my/class_name` becomes `here.is.my.ClassName`. This is taken from Java and ActionScript 3. Since this may not be a preferred naming style in the JS community, this will soon be disabled by default.
 
 ## Example
 

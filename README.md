@@ -4,7 +4,9 @@
 This documentation is still a work in progress and needs a lot of clarity. Things marked as "TODO..." in this README may be working already, they just aren't documented yet.
 
 ## Why does this exist?
-AMD is great for JS development but RequireJS has an issue that makes it especially difficult to debug large scale JS apps.
+AMD is great for JS development. The various AMD solutions make it especially difficult to debug large scale JS apps. AMD in a Box aims to resolve this issue.
+
+*Note:* AMD in a Box aims to be a wrapper for *any AMD implementation* but for now is targetted solely at RequireJS.
 
 File dependancies/includes are written in string form which makes it impossible to error check using front-end JavaScript.
 

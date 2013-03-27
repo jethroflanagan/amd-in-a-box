@@ -69,10 +69,9 @@ Uncaught Error: Package does not exist: view.Test
 So now you can simply spellcheck line 3 of `main.js`.
 
 # How does it work?
-Of course, `sys.pkg` isn't running some magical hidden JS function. We're cheating a bit here. `sys.pkg` will check the string against a list of available packages.
+Of course, `sys.pkg` isn't running some magical hidden JS function. `sys.pkg` will check the string against a list of available packages.
 
 ## Making a reliable and up to date list of packages
-**Wait, hold up! Don't run away just yet.** This isn't some cheap and dirty fix. 
 
 The packages are automatically generated using a NodeJS packager that recurses through all files in the script folder and turns them into a `JSON` list.
 

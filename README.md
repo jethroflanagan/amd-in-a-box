@@ -23,7 +23,7 @@ function(File) {
 
 If have a location for `path/to/file` that doesn't exist, the errors it shows often seem completely unrelated.
 
-The "script load error" only shows up a fair amount of time after that. You still need to do a global project search to work out where the error exists.
+The "script load error" only shows up a while after that. You still need to do a global project search to work out where the error exists.
 
 ## The solution
 Run a check to ensure the file path is correct every time a dependancy is included. 

@@ -15,7 +15,7 @@ We need to make debugging better and easier.
 ```javascript
 define(['path/to/file_name'],
 function(File) {
-	...
+	// ...
 });
 ```
 
@@ -31,7 +31,7 @@ Run a check to ensure the file path is correct every time a dependancy is includ
 ```javascript
 define([sys.pkg('path.to.FileName']), // resolves to 'path/to/file_name' - see Package naming convention below
 function(File) {
-	...
+	// ...
 });
 ```
 `sys.pkg` will make sure the file exists and throw an error immediately if it doesn't - an error with a full stack trace so you can easily see which file caused the issue.

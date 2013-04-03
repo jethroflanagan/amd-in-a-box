@@ -2,6 +2,7 @@
 	"project": "inabox",
 	"source_path": "../../src/js",
 	"deploy_path": "../../deploy/js",
+	"package_naming": false,
 	"reduce_project": true,
 	"output": "../../src/js/sys/package_list.js",
 	"output_start": "sys.depLoaded(",

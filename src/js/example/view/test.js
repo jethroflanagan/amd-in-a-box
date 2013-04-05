@@ -1,7 +1,7 @@
 define(
 [
-	sys.lib('Backbone'),
-	sys.lib('Lodash')
+	box.lib('Backbone'),
+	box.lib('Lodash')
 ],
 function(Backbone, _)
 {

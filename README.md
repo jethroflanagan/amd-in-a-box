@@ -6,37 +6,37 @@ This documentation is still a work in progress and needs a lot of clarity. Thing
 ## Why does this exist?
 AMD is great for JS development. The various AMD solutions make it especially difficult to debug large scale JS apps. AMD in a Box aims to resolve this issue.
 
-*Note:* AMD in a Box aims to be a wrapper for *any AMD implementation* but for now is targetted solely at RequireJS.
+*Note:* AMD in a Box aims to be a wrapper for *any AMD implementation* but for now is targeted solely at RequireJS.
 
-File dependancies/includes are written in string form which makes it impossible to error check using front-end JavaScript.
+File dependencies/includes are written in string form which makes it impossible to error check using front-end JavaScript.
 
 We need to make debugging more efficient and much easier.
 
 **Vanilla RequireJS:**
 
-```javascript
+~~~javascript
 define(['path/to/file_name'],
 function(File) {
 	// ...
 });
-```
+~~~
 
 If have a location for `path/to/file` that doesn't exist, the errors it shows often seem completely unrelated.
 
 The "script load error" only shows up a while after that. You still need to do a global project search to work out where the error exists.
 
 ## The solution
-Run a check to ensure the file path is correct every time a dependancy is included. 
+Run a check to ensure the file path is correct every time a dependency is included. Everything is namespaced into `window.box`.
 
 **So this is what we get:**
 
-```javascript
-define([sys.pkg('path.to.FileName']), // resolves to 'path/to/file_name' - see Package naming convention below
+~~~javascript
+define([box.pkg('path.to.FileName']), // resolves to 'path/to/file_name' - see Package naming convention below
 function(File) {
 	// ...
 });
-```
-`sys.pkg` will make sure the file exists and throw an error immediately if it doesn't - an error with a full stack trace so you can easily see which file caused the issue.
+~~~
+`box.pkg` will make sure the file exists and throw an error immediately if it doesn't - an error with a full stack trace so you can easily see which file caused the issue.
 
 ### Package naming convention
 *Roadmap:* Disabling the "package name" naming (`path.to.FileName`) via the config and working with other file naming conventions (e.g. hyphens).
@@ -47,40 +47,40 @@ Packages are converted to camel case names from underscore style file naming con
 
 **Faulty code:**
 
-```javascript
-define([sys.pkg('view.Test')],
+~~~javascript
+define([box.pkg('view.Test')],
 function(Test) {
 	function init()	{
 	}
 });
-```
+~~~
 
 **Stack trace:**
 
-```
+~~~
 Uncaught Error: Package does not exist: view.Test
 	-> package_manager.js:131
 (anonymous function)
 	-> package_manager.js:131
 (anonymous function)
 	-> main.js:3
-```
+~~~
 
 So now you can simply spellcheck line 3 of `main.js`.
 
 # How does it work?
-Of course, `sys.pkg` isn't running some magical hidden JS function. `sys.pkg` will check the string against a list of available packages.
+Of course, `box.pkg` isn't running some magical hidden JS function. `box.pkg` will check the string against a list of available packages.
 
 ## Making a reliable and up to date list of packages
 
 The packages are automatically generated using a NodeJS packager that recurses through all files in the script folder and turns them into a `JSON` list.
 
-It's this list that the `sys.pkg` checks the package strings against.
+It's this list that the `box.pkg` checks the package strings against.
 
 The packager can also listen for changes in the script folder so that it automatically refreshes the package list.
 
 ## Won't all these checks slow down my code at run time?
-Not by much. But it's better to have portable code that isn't tied to one system or another. So there's also a compiler which copies all of the code over to a deploy folder with the file paths baked in - so `sys.pkg('foo.FooBar')` becomes `foo/foo_bar` and there's no mention again of any `sys.pkg`
+Not by much. But it's better to have portable code that isn't tied to one system or another. So there's also a compiler which copies all of the code over to a deploy folder with the file paths baked in - so `box.pkg('foo.FooBar')` becomes `foo/foo_bar` and there's no mention again of any `box.pkg`.
 
 # Making it run
 You need to get NodeJS installed. Then run `build/packager/box.js` like this: `node box [flags]` from the command line.
@@ -93,20 +93,20 @@ You can run the packager and compiler together or separately as well as telling 
 `-l`, `--listen`: Run packager and listen for file changes (runs continuously). It will only update the packages if an update is necessary. If the compile flag ('-c') is set, every package update will also compile the source.
 `-c`, `--compile`: Copy code to the deploy folder and compile.
 `-v`, `--version`: Still to come. Until it happens this is v 0.1
-`-f`(ile), `--config`: Specify a config file, enclose in double quotes, e.g. -config "../config.json". This isn't yet implemented.
+`-f`(ile), `--config`: Specify a config file, enclose in double quotes, e.g. -config "../config.json". `Not yet implemented.`
 
 ## Configuring the packager
 Use the `build/packager/packager_config.json` file to control the packager. It outputs a file with a `json` encoded list of folders and files. 
 
 **Example config:**
 
-```json
+~~~json
 {
 	"project": "inabox",
-	"source_path": "../../src/js",
+	"source_path": "../../box/js",
 	"reduce_project": true,
-	"output": "../../src/js/sys/package_list.js",
-	"output_start": "sys.depLoaded(",
+	"output": "../../box/js/box/package_list.js",
+	"output_start": "box.depLoaded(",
 	"output_end": ");",
 	"pretty_print": true,
 	"watch_interval": 1000,
@@ -114,7 +114,7 @@ Use the `build/packager/packager_config.json` file to control the packager. It o
 	"lib_folder": "vendor",
 	"confirm_overwrite": true,
 	"ignore_dot_folders": true,
-	"ignore_folders": ["sys"],
+	"ignore_folders": ["box"],
 	"allowed_extensions": ["js", "html"],
 	"drop_folders": ["vendor"],
 	"map": 
@@ -125,11 +125,11 @@ Use the `build/packager/packager_config.json` file to control the packager. It o
 			}
 		]
 }
-```
+~~~
 **Example output:**
 
-```javascript
-sys.depLoaded({
+~~~javascript
+box.depLoaded({
 	"packages": {
 		".inabox": {
 			"App": "",
@@ -155,7 +155,7 @@ sys.depLoaded({
 	},
 	"lib_folder": "!vendor"
 });
-```
+~~~
 
 Todo: Explain output
 
@@ -169,14 +169,14 @@ This is the core project package. This does nothing on its own; other options re
 ---
 **source_path:** *[required]* String
 
-The location of the all the scripts. The scripts in here make use of `sys.pkg` and `sys.lib`. Use web/Unix style paths (forward slashes).
+The location of the all the scripts. The scripts in here make use of `box.pkg` and `box.lib`. Use web/Unix style paths (forward slashes).
 
 ---
 **reduce_project:** *[optional]* Boolean
 
 Add a dot to the front of the project folder in the package list. This marks the folder for reduction.
 
-Reducing a folder means that when you refer to it in `sys.pkg` you don't need to include the reduced folder name. e.g. `sys.pkg('projectName.view.Foo')` can instead become `sys.pkg('view.Foo')`
+Reducing a folder means that when you refer to it in `box.pkg` you don't need to include the reduced folder name. e.g. `box.pkg('projectName.view.Foo')` can instead become `box.pkg('view.Foo')`
 
 *Roadmap:* change this to `"reduce_folders": []`
 
@@ -236,7 +236,7 @@ Dot folders are any folders with a period as a prefix e.g. `.git`. Setting this 
 ---
 **ignore_folders:** *[optional]* String Array
 
-The packager will not recurse through any folders in the list. Example usage: `ignore_folders: ["sys"]`
+The packager will not recurse through any folders in the list. Example usage: `ignore_folders: ["box"]`
 
 ---
 **allowed_extensions:** *[optional]* String Array
@@ -249,27 +249,27 @@ Only list files with the extensions in the array.
 
 Adds a `!` before the folder name which means that all packages in the folder resolve to path names that don't include the dropped folder.
 e.g. 
-```json
+~~~json
 {
 	"!vendor": {
 		"Backbone": ""
 	}
 }
-```
-**Usage:** `sys.pkg('vendor.Backbone')` resolves the path as `'backbone``, removing `vendor`.
+~~~
+**Usage:** `box.pkg('vendor.Backbone')` resolves the path as `'backbone``, removing `vendor`.
 ---
 **map:** *[optional]* Object Array
 
-Not yet implemented. 
-Todo...
-
-
-## Configuring the compiler
-
-Todo...
+`Not yet implemented.`
+This will allow you to set filenames to resolve to something else entirely, e.g. from `backbone.min.js` to `backbone` which means you can swap out whether you use a minified library or not without changing any code in your source.
 
 ## Development Environment
+The development environment library is in `js/box`. It uses the same namespace as the packager (`window.box`). Please don't deploy to a live server without first compiling.
 
+The packager should be set to ignore the `box` folder to speed it up, although it won't break anything if it parses it.
+
+## Configuring the compiler
+`Not yet implemented.`
 Todo...
 
 # Extra features
@@ -277,12 +277,71 @@ Todo...
 ## Console logging with an off switch
 It's an extra hassle to remove `console.log` and `console.error` references from your code before pushing it live. In some cases it can break your code if it's not done carefully. 
 
-Now you can use `sys.debug.log` and `sys.debug.error` and turn it off by setting `sys.IS_DEBUG` to `false`.
+Now you can use `box.debug.log` and `box.debug.error` and turn it off by setting `box.IS_DEBUG` to `false`.
 
 ## Event handling
-There is an event system in place that works very similarly to the RobotLegs framework's (ActionScript 3) event system.
+There is an event manager that works very similarly to the RobotLegs framework's (ActionScript 3) event system, except that objects don't fire events, the manager does.
 
-Todo...
+You can send and receive events (messages) between components without the components knowing about each other. Events can also be sent from anywhere - DOM elements are not needed as they are for JS's current event system. 
+
+To listen to events, you can add a listener referencing a specific object (target) or you can listen to all events globally, which is [explained later](#global-events). You can add as many listeners to one event id as you like.
+
+Events need an id or name to identify them uniquely so there isn't any accidental collision (events with matching ids). This can be any type of data - string, number, object, etc. 
+
+The final thing to define in an event listener is the callback that will run once an event fires.
+
+**Usage:**
+Adding a listener:
+~~~javascript
+box.event.addListener(
+	target, // the reference to the object
+	'completedSort', // event id
+	onCompletedSort // callback when event fires
+	);
+~~~
+You can dispatch (fire or send) an event from anywhere else, including from the code that has the listener.
+
+To dispatch an event, the target and the id must match the listener.
+
+You can send data along with the event. This can be any type of data. Good practice would be to send an object or an instance through so you can ensure you're not getting event collisions on the receiving end by testing that the data is what you expect. You can leave this argument out if you don't need to pass anything further along.
+
+~~~javascript
+box.event.dispatch(
+	this, // the reference to the object
+	'completedSort', // event id
+	data // any extra data you want to pass along as a message
+	);
+~~~
+
+### Global events
+If you want to keep objects or classes from having to know about each other at all, you can send events around with a `null` target. The object id must still match.
+
+~~~javascript
+box.event.addListener(
+	null, // the reference to the object
+	'completedSort', // event id
+	onCompletedSort // callback when event fires
+	);
+
+// elsewhere	
+box.event.dispatch(
+	null, // the reference to the object
+	'completedSort'
+	);
+~~~
+
+### Creating better event ids
+The best way to ensure each event is unique is to identify them with an object - even `{}` will do. 2 different strings with the same characters will match, but 2 different objects with the same properties will not.
+~~~javascript
+var str1 = "hello";
+var str2 = "hello";
+console.log(str1 === str2); // true
+
+var obj1 = {};
+var obj2 = {};
+console.log(obj1 === obj2); // false
+~~~
+Strict equality (`===`) isn't necessary, it has the same results for normal equality checks (`==`).
 
 ## Global JS fixes
 You can add all your fixes and prototype additions to JS, too. Here's a more consistent space to include things like fixing `indexOf` in IE or adding a `splice` function for strings.
@@ -311,7 +370,4 @@ The compiler doesn't make sure that the source and deploy folders are different.
 * Add in settings that allow configuring file and folder naming conversions
 	
 # More details: the internals of how it works
-
-## Development Environment, etc.
-
-Todo...
+This is a non-essential section of the document. Feel free to skip it. It's for people who want to look more in depth as to how things work.

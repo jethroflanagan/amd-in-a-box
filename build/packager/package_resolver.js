@@ -153,11 +153,11 @@ var PackageResolver = Backbone.Model.extend({
 	},
 
 	/**
-	 Change sys.pkg('foo.BarTest') to the actual file path location (e.g. 'foo/bar_test.js')
+	 Change box.pkg('foo.BarTest') to the actual file path location (e.g. 'foo/bar_test.js')
 	*/
 	rewritePackageNames: function(content) {
-		var openPkg = "sys.pkg('";
-		var openLib = "sys.lib('";
+		var openPkg = "box.pkg('";
+		var openLib = "box.lib('";
 		var close = "')";
 		var index = 0;
 		while (true) {

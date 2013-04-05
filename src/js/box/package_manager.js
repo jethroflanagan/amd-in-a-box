@@ -8,17 +8,17 @@
 {
 	(function init()
 	{
-		var args = sys.args[0];
+		var args = box.args[0];
 		var pack = args.packages;
 
 		createAllPackageNames(pack);
 		reduce(pack);
-		sys.pkg = checkExists(pack);
+		box.pkg = checkExists(pack);
 		if (args.lib_folder)
 		{
-			sys.lib = checkExists(pack[args.lib_folder]); 
+			box.lib = checkExists(pack[args.lib_folder]); 
 		}
-		sys.scriptLoaded();
+		box.scriptLoaded();
 	})();
 
 	/**

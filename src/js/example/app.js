@@ -1,6 +1,6 @@
 define(
 [
-	sys.pkg('Main')
+	box.pkg('Main')
 ],
 
 function(Main) 

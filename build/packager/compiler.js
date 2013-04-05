@@ -10,7 +10,7 @@ var PackageResolver = require('./package_resolver');
 /**
 	May work independantly of the packager if needed.
 	This is not a minifier. Minification should be run after code is compiled.
-	TODO join files loaded by bootstrap.js into one file, and remove references to sys.scriptLoaded
+	TODO join files loaded by bootstrap.js into one file, and remove references to box.scriptLoaded
 */
 var Compiler = Backbone.Model.extend({
 	packagerConfig: null,

@@ -13,5 +13,5 @@
 			return this;
 		}
 	}
-	sys.scriptLoaded();
+	box.scriptLoaded();
 })();

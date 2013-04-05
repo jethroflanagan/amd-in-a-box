@@ -1,4 +1,4 @@
-sys.depLoaded({
+box.depLoaded({
 	"packages": {
 		".inabox": {
 			"App": "",

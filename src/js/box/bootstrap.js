@@ -4,7 +4,7 @@
 (function()
 {
 	var startTime = new Date().getTime();
-	var scriptPath = 'js/sys/';
+	var scriptPath = 'js/box/';
 	var scripts = 
 		[
 			{
@@ -12,6 +12,9 @@
 			}, 
 			{
 				file: 'global.js'
+			},
+			{
+				file: 'event.js'
 			},
 			{
 				file: 'package_manager.js',
@@ -23,13 +26,13 @@
 
 	(function init()
 	{
-		var sys = 
+		var box = 
 		{
 			IS_DEBUG: true,
 			scriptLoaded: scriptLoaded,
 			depLoaded: depLoaded
 		};
-		window.sys = sys;
+		window.box = box;
 		loadNextScript();
 	})();
 
@@ -38,7 +41,7 @@
 		console.log('file:', scripts[scriptIndex].file, showTotalPercent());
 		if (scripts[scriptIndex].deps)
 		{
-			delete sys.args;
+			delete box.args;
 			depList = [];
 			loadNextDep();
 		}
@@ -53,7 +56,7 @@
 		var list = scripts[scriptIndex].deps;
 		if (list.length == depList.length) 
 		{
-			sys.args = depList;
+			box.args = depList;
 			// finished loading deps, load the main file
 			loadScript(scripts[scriptIndex].file);
 		}
@@ -114,17 +117,17 @@
 	}
 	/**
 		e.g.
-		<script id="sys"
-			data-src="js/vendor/require/require.js" 	// source to load once sys is done
-			data-attr="data-main=js/skull/config.js" 	// comma-separated attributes to set on script tag
-			src="js/sys/bootstrap.js">
+		<script id="box"
+			data-src="js/vendor/require/require.js" 	// source to load once box is done
+			data-attr="data-main=js/inabox/config.js" 	// comma-separated attributes to set on script tag
+			src="js/box/bootstrap.js">
 		</script>
 	*/
 	function loadApp()
 	{
-		delete sys.args;
+		delete box.args;
 		
-		var config = document.getElementById('sys');
+		var config = document.getElementById('box');
 
 		var script = document.createElement('script');
 		var src = config.getAttribute('data-src');

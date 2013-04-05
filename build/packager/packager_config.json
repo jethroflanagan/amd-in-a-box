@@ -1,11 +1,11 @@
 {
-	"project": "inabox",
+	"project": "example",
 	"source_path": "../../src/js",
 	"deploy_path": "../../deploy/js",
 	"package_naming": false,
 	"reduce_project": true,
-	"output": "../../src/js/sys/package_list.js",
-	"output_start": "sys.depLoaded(",
+	"output": "../../src/js/box/package_list.js",
+	"output_start": "box.depLoaded(",
 	"output_end": ");",
 	"pretty_print": true,
 	"watch_interval": 1000,
@@ -13,7 +13,7 @@
 	"lib_folder": "vendor",
 	"confirm_overwrite": true,
 	"ignore_dot_folders": true,
-	"ignore_folders": ["sys"],
+	"ignore_folders": ["box"],
 	"allowed_extensions": ["js", "html"],
 	"drop_folders": ["vendor"],
 	"map":

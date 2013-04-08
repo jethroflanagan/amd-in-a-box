@@ -91,9 +91,12 @@ You can run the packager and compiler together or separately as well as telling 
 `-p`, `--package`: Run packager.
 
 `-l`, `--listen`: Run packager and listen for file changes (runs continuously). It will only update the packages if an update is necessary. If the compile flag ('-c') is set, every package update will also compile the source.
+
 `-c`, `--compile`: Copy code to the deploy folder and compile.
-`-v`, `--version`: Still to come. Until it happens this is v 0.1
-`-f`(ile), `--config`: Specify a config file, enclose in double quotes, e.g. -config "../config.json". `Not yet implemented.`
+
+`-v`, `--version`: Until it happens this is v 0.1 `Not yet implemented.`
+
+`-f`(File), `--config`: Specify a config file, enclose in double quotes, e.g. -config "../config.json". `Not yet implemented.`
 
 ## Configuring the packager
 Use the `build/packager/packager_config.json` file to control the packager. It outputs a file with a `json` encoded list of folders and files. 

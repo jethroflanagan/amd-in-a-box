@@ -6,8 +6,8 @@ function(Test)
 {
 	function init()
 	{
-		console.log('main is running');
-		console.log('box.pkg', box.pkg('vendor.Backbone'));
+		box.debug.log('main is running');
+		box.debug.log('box.pkg(\'vendor.Backbone\') =', box.pkg('vendor.Backbone'));
 		Test.init();
 	}
 

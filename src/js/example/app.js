@@ -5,5 +5,6 @@ define(
 
 function(Main) 
 {
+	box.debug.log('app is running');
 	Main.init();
 });

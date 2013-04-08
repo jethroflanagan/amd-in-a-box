@@ -1,6 +1,6 @@
 require.config(
 	{
-		deps: ['inabox/app'],
+		deps: ['example/app'],
 		baseUrl: 'js/',
 
 		//TODO Remove this for compile

@@ -1,6 +1,6 @@
 box.depLoaded({
 	"packages": {
-		".inabox": {
+		".example": {
 			"App": "",
 			"Config": "",
 			"Main": "",

@@ -69,7 +69,7 @@ Uncaught Error: Package does not exist: view.Test
 So now you can simply spellcheck line 3 of `main.js`.
 
 # How does it work?
-Of course, `box.pkg` isn't running some magical hidden JS function. `box.pkg` will check the string against a list of available packages.
+`box.pkg` checks the string against a list of available packages, based on the files in your project directory.
 
 ## Making a reliable and up to date list of packages
 

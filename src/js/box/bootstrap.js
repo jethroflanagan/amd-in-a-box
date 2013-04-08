@@ -3,6 +3,9 @@
 */
 (function()
 {
+	var IS_DEBUG = true;
+	var IS_VERBOSE = true;
+
 	var startTime = new Date().getTime();
 	var scriptPath = 'js/box/';
 	var scripts = 
@@ -28,7 +31,8 @@
 	{
 		var box = 
 		{
-			IS_DEBUG: true,
+			IS_DEBUG: IS_DEBUG,
+			IS_VERBOSE: IS_VERBOSE,
 			scriptLoaded: scriptLoaded,
 			depLoaded: depLoaded
 		};
@@ -38,7 +42,8 @@
 
 	function loadNextScript()
 	{
-		console.log('file:', scripts[scriptIndex].file, showTotalPercent());
+		if (IS_VERBOSE)
+			console.log('file:', scripts[scriptIndex].file, showTotalPercent());
 		if (scripts[scriptIndex].deps)
 		{
 			delete box.args;
@@ -62,7 +67,8 @@
 		}
 		else
 		{
-			console.log('dep:', list[depList.length], showDepsPercent(), showTotalPercent());
+			if (IS_VERBOSE)
+				console.log('dep:', list[depList.length], showDepsPercent(), showTotalPercent());
 			// use the depList length for counting
 			var dep = list[depList.length];
 			loadScript(dep);
@@ -89,7 +95,8 @@
 		// file may be getting written to so attempt to access again
 		if (data == undefined)
 		{
-			console.log('file inaccessible, attempting reload');
+			if (IS_VERBOSE)
+				console.log('file inaccessible, attempting reload');
 			setTimeout(loadNextDep, 1000);
 			return;
 		}
@@ -145,7 +152,8 @@
 		}
 		script.src = src;
 		document.head.appendChild(script);
-		console.log('setup time:', new Date().getTime() - startTime + 'ms');
+		if (IS_VERBOSE)
+			console.log('setup time:', new Date().getTime() - startTime + 'ms');
 	}
 	
 })();

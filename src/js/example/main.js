@@ -1,6 +1,6 @@
 define(
 [
-	box.pkg('MyAppz')
+	box.pkg('view.Test')
 ],
 function(Test)
 {

@@ -3,7 +3,7 @@
 */
 (function()
 {
-	var IS_DEBUG = true;
+	var IS_DEBUG = false;
 	var IS_VERBOSE = true;
 
 	var startTime = new Date().getTime();

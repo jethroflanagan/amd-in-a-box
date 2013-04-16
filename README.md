@@ -1,9 +1,5 @@
 # AMD in a Box v0.1
-<<<<<<< HEAD
 test
-=======
-blah
->>>>>>> Testing conflicts
 
 ## Note
 This documentation is still a work in progress and needs a lot of clarity. Things marked as "Todo..." in this README may be working already, they just aren't documented yet.
@@ -42,9 +38,6 @@ function(File) {
 });
 ~~~
 `box.pkg` will make sure the file exists and throw an error immediately if it doesn't - an error with a full stack trace so you can easily see which file caused the issue.
-
-# Quickstart 
-todo
 
 ### Package naming convention
 *Roadmap:* Disabling the "package name" naming (`path.to.FileName`) via the config and working with other file naming conventions (e.g. hyphens).

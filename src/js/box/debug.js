@@ -9,10 +9,10 @@
 	}
 	else //nix console logs entirely
 	{
-		box.debug = 
+		box.debug = function()
 			{
-				log: function() {},
-				error: function() {}
+				function log(){}
+				function error(){}
 			}
 	}
 	box.scriptLoaded();

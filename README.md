@@ -1,5 +1,5 @@
 # AMD in a Box v0.1
-test
+test2
 
 ## Note
 This documentation is still a work in progress and needs a lot of clarity. Things marked as "Todo..." in this README may be working already, they just aren't documented yet.
